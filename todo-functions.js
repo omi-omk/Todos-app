@@ -1,4 +1,5 @@
-// Fetch existing todos from localStorage
+'use strict'
+
 const getSavedTodos = function () 
 {
     const todosJSON = localStorage.getItem('todos')
@@ -10,13 +11,11 @@ const getSavedTodos = function ()
     }
 }
 
-// Save todos to localStorage
 const saveTodos = function (todos) 
 {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
-// Remove todo by id
 const removeTodo = function (id) 
 {
     const todoIndex = todos.findIndex(function (todo) 
@@ -30,7 +29,6 @@ const removeTodo = function (id)
     }
 }
 
-// Toggle the completed value for a given todo
 const toggleTodo = function (id) 
 {
     const todo = todos.find(function (todo) 
@@ -44,7 +42,6 @@ const toggleTodo = function (id)
     }
 }
 
-// Render application todos based on filters
 const renderTodos = function (todos, filters) 
 {
     const filteredTodos = todos.filter(function (todo) 
@@ -68,14 +65,12 @@ const renderTodos = function (todos, filters)
     })
 }
 
-// Get the DOM elements for an individual note
 const generateTodoDOM = function (todo) {
     const todoEl = document.createElement('div')
     const checkbox = document.createElement('input')
     const todoText = document.createElement('span')
     const removeButton = document.createElement('button')
 
-    // Setup todo checkbox
     checkbox.setAttribute('type', 'checkbox')
     checkbox.checked = todo.completed
     todoEl.appendChild(checkbox)
@@ -86,11 +81,9 @@ const generateTodoDOM = function (todo) {
         renderTodos(todos, filters)
     })
 
-    // Setup the todo text
     todoText.textContent = todo.text
     todoEl.appendChild(todoText)
 
-    // Setup the remove button
     removeButton.textContent = 'x'
     todoEl.appendChild(removeButton)
     removeButton.addEventListener('click', function () 
@@ -103,7 +96,6 @@ const generateTodoDOM = function (todo) {
     return todoEl
 }
 
-// Get the DOM elements for list summary
 const generateSummaryDOM = function (incompleteTodos) 
 {
     const summary = document.createElement('h2')
